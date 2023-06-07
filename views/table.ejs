@@ -1,0 +1,20 @@
+<table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Precio Unitario</th>
+        <th>Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i = 0; i < products.length; i++) { %>
+        <tr>
+          <td><%= products[i].name %></td>
+          <td><%= products[i].description %></td>
+          <td><%= products[i].unitprice %></td>
+          <td><%= products[i].image %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
