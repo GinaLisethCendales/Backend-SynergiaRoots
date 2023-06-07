@@ -144,7 +144,7 @@ async function login(req, res) {
     try {
         const body = req.body
         // Buscar el usuario en la base de datos
-        const user = await User.findOne({ username: body["username"] });
+        const user = await User.findOne({ email: body["email"] });
 
         if (!user) {
             // El usuario no existe

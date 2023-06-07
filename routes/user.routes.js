@@ -8,11 +8,11 @@ const router = express.Router();
 
 
 //obtener todos
-router.get("/users",userController.Getuser);
+router.get("/users", jwt.verifyToken, userController.Getuser);
 //obtener uno 
-router.get("/users/:id",userController.Getuser);
+router.get("/users/:id", jwt.verifyToken, userController.Getuser);
 //insertar 
-router.post("/users", jwt.verifyToken, userController.Insertuser);
+router.post("/users", userController.Insertuser);
 //actualizar
 router.put("/users/:id", jwt.verifyToken, userController.Updateuser);
 //eliminar 
