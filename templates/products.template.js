@@ -7,7 +7,7 @@ async function renderProducts(req, res) {
       const response = await productController.RenderProducts();
       
       if (response) {
-        return res.render('table', { products: response.products });
+        return res.render('productsTable', { products: response.products });
       } else {
         return res.render('error', { message: response.msg });
       }

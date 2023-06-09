@@ -45,6 +45,28 @@ async function Getuser(req, res) {
     }
 }
 
+async function RenderUsers() {
+    // consulta todos
+    try {
+        const users = await User.find({});
+
+        const response = {
+            ok: true,
+            msg: `Usuarios consultado correctamente`,
+            users: users
+
+        }
+        return response;
+    }
+    catch (error) {
+        const response = {
+            ok: false,
+            msg: `error Usuarios consultados`
+        }
+        return response;
+    }
+}
+
 async function Insertuser(req, res) {
 
     try {
@@ -53,13 +75,16 @@ async function Insertuser(req, res) {
         // Verificar si el usuario ya existe en la base de datos
         const existingUser = await User.findOne({ username: _user["username"] });
 
-
         if (existingUser) {
             throw new Error('El usuario ya está registrado');
         }
 
-        // Generar el hash de la contraseña
-        const hashedPassword = await bcrypt.hash(_user["password"], 10);
+        var hashedPassword = "";
+        if(_user.hasOwnProperty["password"]){
+             // Generar el hash de la contraseña
+            hashedPassword = await bcrypt.hash(_user["password"], 10);
+        }
+       
 
         // Crear un nuevo usuario con la contraseña cifrada
         const newUser = new User(
@@ -67,7 +92,8 @@ async function Insertuser(req, res) {
                 username: _user["username"],
                 password: hashedPassword,
                 email: _user["email"],
-                role: _user["role"]
+                role: _user["role"],
+                createdAt: _user["createdAt"]
             });
 
 
@@ -96,7 +122,7 @@ async function Updateuser(req, res) {
         if (!user) {
             return res.status(404).send({
                 ok: false,
-                msg: `No se encontró ningún usero con el ID ${id}`
+                msg: `No se encontró ningún user con el ID ${id}`
             });
         }
 
@@ -188,6 +214,7 @@ async function login(req, res) {
 
 module.exports = {
     Getuser,
+    RenderUsers,
     Insertuser,
     Updateuser,
     Deleteuser,
