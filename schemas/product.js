@@ -6,6 +6,7 @@ const ProductSchema = new Schema({
     description: { type: String },
     unitprice: { type: Number },
     image: { type: String },
+    category: { type: String }
 });
 
 // Compile model from schema

@@ -13,8 +13,10 @@ router.get("/", function (req, res) {
 
 //obtener todos
 router.get("/products",productController.GetProducts);
-//obtener todos
+//obtener todos tabla
 router.get("/products/table",productTemplate.renderProducts);
+//obtener todos cards
+router.get("/products/cards",productTemplate.renderCardProducts);
 //obtener uno 
 router.get("/products/:id",productController.GetProducts);
 //insertar 

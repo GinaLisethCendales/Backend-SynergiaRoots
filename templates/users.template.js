@@ -1,6 +1,6 @@
 
 const userController = require('../controllers/user.controller')
-
+require('dotenv').config();
 
 async function RenderUsers(req, res) {
     try {
